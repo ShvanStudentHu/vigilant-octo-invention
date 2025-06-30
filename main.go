@@ -21,7 +21,6 @@ type Key struct {
 	ID string
 	created_at string
 
-
 }
 
 
@@ -54,7 +53,6 @@ encryptedText := aesGCM.Seal(nil, nonce, plaintext, nil)
 
 
 return encryptedText, nil
-
 
 }
 
@@ -89,3 +87,4 @@ func main() {
 		// fmt.Println("the key is:", key)
 		fmt.Println("Encrypted text:", encryptedText)
 }
+
