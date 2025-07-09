@@ -9,6 +9,7 @@ import (
 	"os"
     "github.com/gin-gonic/gin"
 	"github.com/ShvanStudentHu/vigilant-octo-invention/api"
+	"github.com/joho/godotenv"
 
 )
 
@@ -27,6 +28,13 @@ type Key struct {
 	created_at string
 
 }
+
+type vaultServer struct {
+	vaultClient: *api.Client
+	keyName: string
+}
+
+
 
 func main() {
 client, _ := vault.CreateVaultClient()
