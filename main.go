@@ -7,6 +7,8 @@ import (
 	// "github.com/ShvanStudentHu/vigilant-octo-invention/internal/crypto"
 	"github.com/ShvanStudentHu/vigilant-octo-invention/vault"
 	"os"
+    "github.com/gin-gonic/gin"
+	"github.com/ShvanStudentHu/vigilant-octo-invention/api"
 
 )
 
@@ -28,11 +30,18 @@ type Key struct {
 
 func main() {
 client, _ := vault.CreateVaultClient()
-
+	
 vault.SetToken(client)
+	
+r := gin.Default()
 
-vault.CreateTransitKey(client, os.Getenv("ENCRYPT_KEY"))
+keyName := os.Getenv("ENCRYPT_KEY")
 
+api.CreateKeyRoute(r , client, keyName)
+
+
+r.Run(":8080")
+// vault.CreateTransitKey(client, )
 
 
 personInfo := Information{
@@ -52,6 +61,12 @@ ciphertext, _ := vault.EncryptWithVaultKey(client, os.Getenv("ENCRYPT_KEY"), str
 
 fmt.Println("Encrypted personInfo:", ciphertext)
 
+
+// newkey, err := vault.RotateTransitKey(client, os.Getenv("ENCRYPT_KEY"))
+// if err != nil {
+// 	fmt.Errorf("Rotation Failed")
+// }
+// fmt.Println(newkey)
 
 	// fmt.Println("Plain JSON:", string(plainData))
 
@@ -75,6 +90,7 @@ fmt.Println("Encrypted personInfo:", ciphertext)
 
 	// 	d, _ := crypto.DecryptData(encryptedText, key)
 	// 	fmt.Println("decrypt: ", string(d))
+
 
 }
 
