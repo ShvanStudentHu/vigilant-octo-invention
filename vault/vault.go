@@ -1,13 +1,15 @@
-package vault 
+package vault
 
 import (
-	"github.com/hashicorp/vault/api"
-	"log"
-	"github.com/joho/godotenv"
-	"os"
+	"encoding/base64"
 	"fmt"
-	    "encoding/base64"
+	"log"
+	"os"
+
+	"github.com/hashicorp/vault/api"
+	"github.com/joho/godotenv"
 )
+
 
 func CreateVaultClient() (*api.Client, error) {
 	
@@ -109,3 +111,4 @@ func DecryptWithVaultKey(client *api.Client, keyName string, ciphertext string) 
 
 	return string(plaintextBytes), nil
 }
+f
