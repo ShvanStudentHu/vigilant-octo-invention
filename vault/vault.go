@@ -111,4 +111,3 @@ func DecryptWithVaultKey(client *api.Client, keyName string, ciphertext string) 
 
 	return string(plaintextBytes), nil
 }
-f
